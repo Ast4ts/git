@@ -19,9 +19,17 @@ serices:
     container_name: prometheus
     image: prometheus:latest
     ports: 
-      - 9090:9090
+      - '127.0.0.1:9090:9090'
     networks:
       - devops_course
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./config.yml:/etc/prometheus/prometheus.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./prometheus-storage:/prometheus
+    labels:
+      - monitoring-job=prometheus
 
 networks:
   devops_course:
