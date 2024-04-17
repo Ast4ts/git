@@ -15,6 +15,14 @@ serices:
     volumes:
       - ./grafana-storage:/var/lib/grafana
 
+  prometheus:
+    container_name: prometheus
+    image: prometheus:latest
+    ports: 
+      - 9090:9090
+    networks:
+      - devops_course
+
 networks:
   devops_course:
     external: true
