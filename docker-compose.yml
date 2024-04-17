@@ -1,0 +1,20 @@
+version: '3.9'
+
+serices: 
+  
+  grafana:
+    container_name: grafana
+    image: grafana:latest
+    ports:
+      - 3000:3000
+    networks:
+      - devops_course
+    environment:
+      - GF_SECURITY_ADMIN_USER=devops
+      - GF_SECURITY_ADMIN_PASSWORD=devops  
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+
+networks:
+  devops_course:
+    external: true
